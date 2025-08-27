@@ -1,30 +1,58 @@
 "use client";
 import { useEffect, useState } from "react";
 
-type PublicChallenge = { id: string; title: string; prompt_user: string; version: number };
+type PublicChallenge = {
+  id: string;
+  title: string;
+  prompt_user: string;
+  version: number;
+};
+
+type Criterion = {
+  id: string;
+  name: string;
+  weight: number;
+  points: number;
+  comments: string;
+};
+
+type GradingResult = {
+  score: number;
+  passed: boolean;
+  reasoning: string;
+  criteria_breakdown: Criterion[];
+};
 
 export default function Page() {
   const [challenges, setChallenges] = useState<PublicChallenge[]>([]);
   const [selected, setSelected] = useState<string>("");
   const [answer, setAnswer] = useState("");
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<GradingResult | null>(null);
 
   useEffect(() => {
-    fetch("/api/challenges").then(r => r.json()).then(setChallenges);
+    fetch("/api/challenges")
+      .then((r) => r.json())
+      .then(setChallenges);
   }, []);
 
   const onGrade = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await fetch("/api/grade", {
       method: "POST",
-      headers: { "Content-Type":"application/json" },
-      body: JSON.stringify({ challengeId: selected, answer })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ challengeId: selected, answer }),
     });
     const json = await res.json();
-    setResult(json);
+
+    // API 側で "parsed" に入って返ってくる場合があるのでハンドリング
+    setResult(json.parsed ?? json);
   };
 
-  const current = challenges.find(c => c.id === selected);
+  const current = challenges.find((c) => c.id === selected);
+
+  // ポイント合計を算出
+  const totalPoints =
+    result?.criteria_breakdown?.reduce((sum, c) => sum + c.points, 0) ?? 0;
 
   return (
     <main className="mx-auto max-w-[800px] p-6 space-y-6">
@@ -38,8 +66,10 @@ export default function Page() {
           onChange={(e) => setSelected(e.target.value)}
         >
           <option value="">-- 選択してください --</option>
-          {challenges.map(c => (
-            <option key={c.id} value={c.id}>{c.title}（v{c.version}）</option>
+          {challenges.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.title}（v{c.version}）
+            </option>
           ))}
         </select>
       </div>
@@ -68,15 +98,19 @@ export default function Page() {
       </form>
 
       {result && (
-        <div className="p-4 rounded border space-y-2">
-          <div className="font-semibold">スコア: {result.score} {result.passed ? "✅" : "❌"}</div>
+        <div className="p-4 rounded border space-y-3">
+          <div className="font-semibold">
+            スコア: {result.score} {result.passed ? "✅" : "❌"}
+          </div>
           <div>理由: {result.reasoning}</div>
-          <div className="mt-2">
-            <div className="font-medium mb-1">内訳</div>
+          <div>ポイント合計: {totalPoints}</div>
+
+          <div>
+            <div className="font-medium mb-1">コメント一覧</div>
             <ul className="list-disc ml-6">
-              {result.criteria_breakdown?.map((c: any) => (
+              {result.criteria_breakdown?.map((c) => (
                 <li key={c.id}>
-                  [{c.name}] {c.points}点 / weight {c.weight} — {c.comments}
+                  {c.comments}（{c.name}: {c.points}点）
                 </li>
               ))}
             </ul>
