@@ -4,6 +4,7 @@ import OpenAI from "openai";
 import { CHALLENGES } from "@/server/data/challenges";
 import { z } from "zod";
 import { zodResponseFormat } from "openai/helpers/zod";
+import { parse } from "path";
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -20,7 +21,7 @@ const GradingResult = z.object({
     comments: z.string(),
   })),
 });
-type GradingResult = z.infer<typeof GradingResult>;
+//type GradingResult = z.infer<typeof GradingResult>;
 
 export async function POST(req: NextRequest) {
   const { challengeId, answer } = await req.json();
@@ -53,37 +54,30 @@ ${answer}
 `;
 
   // ★ Zod で構造化出力をパースして返す
-  const resp = await client.responses.parse({
-    model: "gpt-4.1-mini",
-    input: [
-      { role: "system", content: SYSTEM },
-      { role: "system", content: DEV },
-      { role: "user", content: USER },
-    ],
-    response_format: zodResponseFormat(GradingResult, "grading_result"),
-  });
+  console.log("Sending prompt to OpenAI...");
 
-// ...existing code...
-const data = [
-  {
-    reasoning: "AIの回答の理由",
-    score: 85,
-    passed: true,
-    criteria_breakdown: [
-      {
-        id: "1",
-        name: "正確性",
-        weight: 0.5,
-        points: 42.5,
-        comments: "正確な回答でした"
-      },
-      // 必要に応じて他のcriteriaを追加
-    ]
-  }
-];
-// ...existing code...
+const resp = await client.chat.completions.parse({
+  model: "gpt-4.1-mini",
+  messages: [
+    { role: "system", content: SYSTEM },
+    { role: "system", content: DEV },
+    { role: "user", content: USER },
+  ],
+  
+  response_format: zodResponseFormat(GradingResult,"grading_result"),
+});
+const message = resp.choices[0].message;
+console.log("Received response from OpenAI:", message);
+if(message?.parsed){
+  console.log("Parsed content:", message.parsed);
+}else{
+  console.log("No parsed content available.");
+}
 
-  return new Response(JSON.stringify(data), {
+// バリデーション済みのデータ
+  return new Response(JSON.stringify(message), {
+    status: 200,
     headers: { "Content-Type": "application/json" },
   });
+
 }
