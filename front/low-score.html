@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>関西度診断</title>
+    
+    <link rel="stylesheet" href="low-score.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <h1></h1>
+        <div id="quiz-area">
+            <h2 id="question"></h2>
+            
+            <div class="button-container">
+                <button class="menu-button" onclick="goToSelectionScreen()">選択画面に戻る</button>
+            </div>
+        </div>
+        
+        <div id="result-area" class="result-container" style="display:none;">
+            <p id="result-text"></p>
+            <p id="score-text"></p>
+            <button class="restart-btn" onclick="restartQuiz()">もう一度診断する</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
