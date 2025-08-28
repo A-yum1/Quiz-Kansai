@@ -11,4 +11,4 @@ export default function DialogueBox({ children }: DialogueBoxProps) {
       {children}
     </div>
   );
-}}
+}

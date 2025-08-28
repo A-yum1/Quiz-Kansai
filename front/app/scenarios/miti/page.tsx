@@ -57,7 +57,7 @@ export default function Page() {
 
       {/* 背景画像＋オーバーレイ */}
       <div
-        className={`absolute inset-0 bg-[url('/takoyaki.jpg')] bg-cover bg-center transition-opacity duration-1000 ${
+        className={`absolute inset-0 bg-[url('/miti.jpg')] bg-cover bg-center transition-opacity duration-1000 ${
           showImage ? "opacity-100" : "opacity-0"
         }`}
       >
