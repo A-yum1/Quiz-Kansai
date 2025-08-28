@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import ChallengeView from "@/app/components/ChallengeView";
 import ResultView from "@/app/components/ResultView";
-import { PublicChallenge, GradingResult } from "@/app/kyoto/types";
+import { PublicChallenge, GradingResult } from "@/app/situation1/types";
 
 export default function Page() {
   const [challenges, setChallenges] = useState<PublicChallenge[]>([]);
@@ -39,9 +39,7 @@ export default function Page() {
   };
 
   return (
-    <html>
-    <body>
-    <main>
+    <div>
         {mode === "challenge" && (
         <ChallengeView
           challenges={challenges}
@@ -56,8 +54,6 @@ export default function Page() {
       {mode === "result" && result && (
         <ResultView result={result} challengeId={selected} onBack={onBack} />
       )}
-    </main>
-    </body>
-    </html>
+    </div>
   );
 }

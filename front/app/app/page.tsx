@@ -1,4 +1,5 @@
 "use client";
+import "./title.css";
 
 export default function Page() {
   // 既存 script.js のグローバル関数を呼ぶ（存在しなければ何もしない）

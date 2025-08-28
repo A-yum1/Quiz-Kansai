@@ -1,4 +1,4 @@
-import { GradingResult } from "@/app/types";
+import { GradingResult } from "@/app/situation1/types";
 import { useState, useEffect, use } from "react";
 
 type Props = {
