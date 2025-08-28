@@ -23,11 +23,14 @@ export default function ChallengeView({
 
   return (
     <div>
-      <h1>お題で採点</h1>
+      <h1 className="text-2xl font-bold">お題で採点</h1>
 
-      <div>
-        <label>お題を選択</label>
-        <select value={selected} onChange={(e) => onSelect(e.target.value)}>
+      <div className="space-y-2">
+        <label className="block font-medium">お題を選択</label>
+        <select
+         className="border rounded px-3 py-2" 
+         value={selected} 
+         onChange={(e) => onSelect(e.target.value)}>
           <option value="">-- 選択してください --</option>
           {challenges.map((c) => (
             <option key={c.id} value={c.id}>
@@ -38,20 +41,25 @@ export default function ChallengeView({
       </div>
 
       {current && (
-        <div>
-          <div>お題</div>
+        <div className="p-4 rounded border">
+          <div  className="font-semibold mb-2">お題</div>
           <p>{current.prompt_user}</p>
         </div>
       )}
 
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="space-y-3">
         <textarea
+          className="w-full border rounded p-3 min-h-[160px]"
           placeholder="ここに回答を入力"
           value={answer}
           onChange={(e) => onChangeAnswer(e.target.value)}
         />
-        <button type="submit" disabled={!selected || !answer || loading}>
-          {loading ? "お待ちください…" : "採点する"}
+        <button 
+          type="submit" 
+          disabled={!selected || !answer || loading} 
+          className="border rounded px-4 py-2"
+          >
+            {loading ? "お待ちください…" : "採点する"}
         </button>
       </form>
     </div>

@@ -1,4 +1,4 @@
-import { GradingResult } from "@/types";
+import { GradingResult } from "@/app/types";
 
 type Props = {
   result: GradingResult;
@@ -24,8 +24,8 @@ export default function ResultView({ result, onBack }: Props) {
   }
 
   return (
-    <div>
-      <div>
+    <div className="p-4 rounded border space-y-3">
+      <div className="font-semibold">
         スコア: {result.score} {result.passed ? "✅" : "❌"}
       </div>
       <div>理由: {result.reasoning}</div>
@@ -33,8 +33,8 @@ export default function ResultView({ result, onBack }: Props) {
       <div>{message}</div>
 
       <div>
-        <div>コメント一覧</div>
-        <ul>
+        <div className="font-medium mb-1">コメント一覧</div>
+        <ul className="list-disc ml-6">
           {result.criteria_breakdown.map((c) => (
             <li key={c.id}>
               {c.comments}（{c.name}: {c.points}点）
@@ -42,8 +42,7 @@ export default function ResultView({ result, onBack }: Props) {
           ))}
         </ul>
       </div>
-
-      <button onClick={onBack}>出題画面に戻る</button>
+      <button className="border rounded px-4 py-2" onClick={onBack}>出題画面に戻る</button>
     </div>
   );
 }
