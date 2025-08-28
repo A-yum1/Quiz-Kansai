@@ -10,45 +10,38 @@ export default function TextTyper({ texts, speed = 50 }: TextTyperProps) {
   const [displayed, setDisplayed] = useState("");
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-console.log(texts);
-
   useEffect(() => {
     audioRef.current = new Audio("/sounds/type.mp3");
     audioRef.current.volume = 0.3;
   }, []);
 
   useEffect(() => {
-    let index = 0;
-    setDisplayed("");
+    if (!texts || !texts[0]) return;
 
-    const text = typeof texts[0] === "string" ? texts[0] : "";
+    const fullText = texts[0] ?? "";
+    let index = 0;
+    setDisplayed(""); // タイピングやり直しのためにリセット
+
     const interval = setInterval(() => {
-      if (index < text.length) {
-        if (typeof texts[0] !== "string") return
-        const c=text.slice(index, index + 1);
-        if (c === undefined ) {
-          return;
-        }
-        setDisplayed((prev) => prev + text.slice(index, index + 1));
+      if (index < fullText.length) {
+        const c = fullText[index];
+        setDisplayed((prev) => prev + c);
 
         if (audioRef.current) {
           audioRef.current.currentTime = 0;
-          audioRef.current.play().catch((err) => {
-            console.warn("タイプ音の再生に失敗しました:", err);
-          });
+          audioRef.current.play().catch(() => {});
         }
 
         index++;
       } else {
         clearInterval(interval);
+        // タイピング完了後も全文を保持（固定表示）
+        setDisplayed(fullText);
       }
     }, speed);
 
     return () => clearInterval(interval);
-  }, [texts, speed]);
-
-  console.log({ displayed });
-  
+  }, [speed]);
 
   return <span>{displayed}</span>;
 }
