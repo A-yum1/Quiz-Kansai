@@ -1,12 +1,15 @@
-version: '3.7'
-
 services:
- front:
-  build:
-   context: ./front/
-   dockerfile: Dockerfile
-  volumes:
-   - ./front/app:/usr/src/app
-  command: 'yarn dev'
-  ports:
-  - "8000:3000"
+  front:
+    build:
+      context: ./front/
+      dockerfile: Dockerfile
+    command: "npm run dev"
+    ports:
+      - "8000:3000"
+    volumes:
+      - ./front/app:/usr/src/app
+      # node_modules をコンテナ側に保持（ホストのマウントで消えないように）
+      - node_modules:/usr/src/app/node_modules
+
+volumes:
+  node_modules:
