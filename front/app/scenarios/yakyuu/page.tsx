@@ -5,10 +5,10 @@ import { useEffect, useState, useRef, useMemo } from "react";
 
 export default function Page() {
   const kansaiStory = [
-    "甲子園のスタンドで、たこ焼き片手に応援中！",
-    "　　「打ったー！」「うわっ、たこ焼き落としそうやったわ！」",
-    "歓声と鉄板のジュ〜ッが混ざって、まるでお祭りみたいや。",
-    "さて、あなたが入れたい具材は？（自由に入力してみて！）",
+    "甲子園のスタンドで、飲み物片手に友人と応援中！（エンターキーで次に進むよ）",
+    "　　「打ったー！」「うわっ、飲み物こぼしそうやったわ！」",
+    "歓声が上がり、盛り上がりは最高潮に",
+    "さて、あなたはどうする？（自由に入力してみて！）",
   ];
 
   const [storyIndex, setStoryIndex] = useState(0);
