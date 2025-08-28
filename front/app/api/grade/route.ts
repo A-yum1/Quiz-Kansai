@@ -56,7 +56,7 @@ ${answer}
   // ★ Zod で構造化出力をパースして返す
   console.log("Sending prompt to OpenAI...");
 
-const resp = await client.chat.completions.parse({
+const resp = await client.beta.chat.completions.parse({
   model: "gpt-4.1-mini",
   messages: [
     { role: "system", content: SYSTEM },
