@@ -39,15 +39,9 @@ export default function Page() {
   const onBack = () => {
     setResult(null);
     setAnswer("");
+    // ここではお題一覧画面に戻る想定なので、実際には別の画面に遷移する
     setMode("challenge");
   };
-
-  // 結果画面の「もう一度診断する」ボタン
-  const onRestart = () => {
-    setAnswer("");
-    setResult(null);
-    setMode("challenge");
-  }
 
   return (
     <div>
@@ -62,7 +56,7 @@ export default function Page() {
         />
       )}
       {mode === "result" && result && (
-        <ResultView score={result.score} onBack={onBack} onRestart={onRestart}
+        <ResultView score={result.score} onBack={onBack}
         />
       )}
     </div>

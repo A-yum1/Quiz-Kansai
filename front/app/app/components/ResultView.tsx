@@ -6,10 +6,9 @@ import { Theme, pickTheme, themeConfig } from "@/app/hooks/themeConfig";
 type Props = {
   score: number;
   onBack: () => void;     // 選択画面に戻る
-  onRestart: () => void;  // もう一度
 };
 
-export default function ResultView({ score, onBack, onRestart }: Props) {
+export default function ResultView({ score, onBack}: Props) {
   const theme = useMemo(() => pickTheme(score), [score]);
   const config = themeConfig[theme];
 
