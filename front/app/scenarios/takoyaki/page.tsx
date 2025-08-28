@@ -24,7 +24,7 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<"challenge" | "result">("challenge");
 
-  const situationId = "situation-001";
+  const situationId = "situation-002"; // たこ焼きのID
 
   const router = useRouter();
   const enterAudioRef = useRef<HTMLAudioElement | null>(null);
