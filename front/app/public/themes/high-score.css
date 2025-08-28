@@ -83,7 +83,7 @@ h1 {
 .options-container,
 .option-btn,
 .restart-btn {
-    display: none !important;
+    display: flex;
 }
 
 .options-container {
