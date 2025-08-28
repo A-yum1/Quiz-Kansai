@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ChallengeView from "@/app/components/ChallengeView";
 import ResultView from "@/app/components/ResultView";
 import { PublicChallenge, GradingResult } from "@/app/situation1/types";
+import { on } from "events";
 
 export default function Page() {
   const [challenges, setChallenges] = useState<PublicChallenge[]>([]);
@@ -34,11 +35,19 @@ export default function Page() {
     setMode("result");
   };
 
+  // 結果画面の「選択画面に戻る」ボタン
   const onBack = () => {
     setResult(null);
     setAnswer("");
     setMode("challenge");
   };
+
+  // 結果画面の「もう一度診断する」ボタン
+  const onRestart = () => {
+    setAnswer("");
+    setResult(null);
+    setMode("challenge");
+  }
 
   return (
     <div>
@@ -53,7 +62,8 @@ export default function Page() {
         />
       )}
       {mode === "result" && result && (
-        <ResultView result={result} challengeId={situationId} onBack={onBack} />
+        <ResultView score={result.score} onBack={onBack} onRestart={onRestart}
+        />
       )}
     </div>
   );
