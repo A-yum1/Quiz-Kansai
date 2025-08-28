@@ -19,7 +19,11 @@ export default function Home() {
   ];
 
   const handleClick = (label: string) => {
-    alert(`『${label}』を選んだんやな！ ほな、次いくで〜！`);
+    alert(`『${label}』を選んだんやな！ ほな、いくで〜！`);
+    if (label === "たこ焼きパーティー") {
+      router.push("/scenarios/takoyaki/page3");
+      return;
+    }
     // router.push(`/quiz?scene=${encodeURIComponent(label)}`);
   };
 
