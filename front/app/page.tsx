@@ -1,42 +1,33 @@
 "use client";
-import { useRouter } from "next/navigation";
+import "./title.css";
 
-export default function Home() {
-  const router = useRouter();
+export default function Page() {
+  // 既存 script.js のグローバル関数を呼ぶ（存在しなければ何もしない）
+  const call = (name: "startQuiz" | "restartQuiz") =>
+    (window as any)?.[name]?.();
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "1.5rem",
-        padding: "1.5rem",
-      }}
-    >
-    <h1 style={{ margin: 0, padding: 0 }}>クイズアプリへようこそ！</h1>
-      <button
-        onClick={() => router.push("/about")}
-        style={{
-      padding: "0.6rem 1.2rem",
-          fontSize: "1rem",
-          borderRadius: "6px",
-          cursor: "pointer",
-          background: "#ffffff",
-          color: "var(--foreground)",
-          border: "1px solid rgba(0,0,0,0.12)",
-          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-      minWidth: "160px",
-          whiteSpace: "nowrap",
-          lineHeight: "1",
-          zIndex: 1,
-        }}
-        aria-label="このアプリについてへ移動"
-      >
-        このアプリについて
-      </button>
-    </main>
+    <div className="app-container">
+      <h1></h1>
+
+      <div id="quiz-area">
+        <h2 id="question"></h2>
+
+        <div className="button-container">
+          <button className="menu-button" onClick={() => call("startQuiz")}>
+            スタート
+          </button>
+          <button className="menu-button">ランキング</button>
+        </div>
+      </div>
+
+      <div id="result-area" className="result-container" style={{ display: "none" }}>
+        <p id="result-text"></p>
+        <p id="score-text"></p>
+        <button className="restart-btn" onClick={() => call("restartQuiz")}>
+          もう一度診断する
+        </button>
+      </div>
+    </div>
   );
 }
