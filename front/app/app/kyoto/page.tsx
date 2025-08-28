@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import ChallengeView from "@/app/components/ChallengeView";
 import ResultView from "@/app/components/ResultView";
-import { PublicChallenge, GradingResult } from "@/app/types";
+import { PublicChallenge, GradingResult } from "@/app/kyoto/types";
 
 export default function Page() {
   const [challenges, setChallenges] = useState<PublicChallenge[]>([]);
