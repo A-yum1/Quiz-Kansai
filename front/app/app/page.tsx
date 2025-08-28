@@ -54,7 +54,7 @@ export default function Page() {
         />
       )}
       {mode === "result" && result && (
-        <ResultView result={result} onBack={onBack} />
+        <ResultView result={result} challengeId={selected} onBack={onBack} />
       )}
     </main>
     </body>

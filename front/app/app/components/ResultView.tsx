@@ -1,11 +1,14 @@
 import { GradingResult } from "@/app/types";
+import { useState, useEffect, use } from "react";
 
 type Props = {
   result: GradingResult;
+  challengeId: string;
   onBack: () => void;
 };
 
-export default function ResultView({ result, onBack }: Props) {
+export default function ResultView({ result, challengeId, onBack }: Props) {
+  const [highScore, setHighScore] = useState<number | null>(null);
   const totalPoints = result.criteria_breakdown.reduce(
     (sum, c) => sum + c.points,
     0
@@ -23,6 +26,22 @@ export default function ResultView({ result, onBack }: Props) {
     message = "がんばりましょう 💪";
   }
 
+  //スコア関連の処理をする
+  useEffect(() => {
+    const stored = localStorage.getItem("highScores");
+    let scores: Record<string, number> = stored ? JSON.parse(stored) : {};
+
+    const currentHigh = scores[challengeId] ?? null;
+    if (currentHigh === null || result.score > currentHigh) {
+      scores[challengeId] = result.score;
+      localStorage.setItem("highScores", JSON.stringify(scores));
+      setHighScore(result.score);
+    } else {
+      setHighScore(currentHigh);
+    }
+  }, [result.score, challengeId]);
+
+
   return (
     <div className="p-4 rounded border space-y-3">
       <div className="font-semibold">
@@ -31,6 +50,10 @@ export default function ResultView({ result, onBack }: Props) {
       <div>理由: {result.reasoning}</div>
       <div>ポイント合計: {totalPoints}</div>
       <div>{message}</div>
+
+       <div style={{ marginTop: "1em", fontWeight: "bold" }}>
+        この問題のハイスコア: {highScore ?? result.score}
+      </div>
 
       <div>
         <div className="font-medium mb-1">コメント一覧</div>
