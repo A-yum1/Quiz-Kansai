@@ -1,6 +1,6 @@
 // app/api/challenges/route.ts
 import { NextRequest } from "next/server";
-import { CHALLENGES } from "@/server/data/challenges";
+import { CHALLENGES } from "@/app/server/data/challenges";
 
 export async function GET(req: NextRequest) {
   const id = new URL(req.url).searchParams.get("id");

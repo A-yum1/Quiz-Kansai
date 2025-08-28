@@ -1,7 +1,7 @@
 // app/api/grade/route.ts
 import { NextRequest } from "next/server";
 import OpenAI from "openai";
-import { CHALLENGES } from "@/server/data/challenges";
+import { CHALLENGES } from "@/app/server/data/challenges";
 import { z } from "zod";
 import { zodResponseFormat } from "openai/helpers/zod";
 import { parse } from "path";
