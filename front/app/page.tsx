@@ -1,13 +1,17 @@
 "use client";
-import "./title.css";
+import "../styles/title.css";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
   const router = useRouter();
 
   // 既存 script.js のグローバル関数を呼ぶ（存在しなければ何もしない）
-  const call = (name: "startQuiz" | "restartQuiz") =>
-    (window as any)?.[name]?.();
+  const call = (name: "startQuiz" | "restartQuiz") => {
+    const fn = (window as unknown as Record<string, unknown>)[name];
+    if (typeof fn === "function") {
+      (fn as () => void)();
+    }
+  };
 
   const handleStart = () => {
     call("startQuiz"); // ← 既存の関数も呼び出す
