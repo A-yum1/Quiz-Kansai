@@ -23,7 +23,7 @@ export default function Page() {
   const [gradingResult, setGradingResult] = useState<GradingResult | null>(null); // ← 名前変更
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<"challenge" | "result">("challenge");
-  
+
   const situationId = "situation-001";
 
   const router = useRouter();
@@ -67,19 +67,19 @@ export default function Page() {
   );
 
   const onGrade = async (e: React.FormEvent) => {
-  e.preventDefault();
-  console.log("ユーザーの回答:", userInput);
-  setLoading(true);
-  const res = await fetch("/api/grade", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ challengeId: situationId, answer: userInput }), // ← answerをuserInputに
-  });
-  const json = await res.json();
-  setGradingResult(json.parsed ?? json);
-  setLoading(false);
-  setMode("result");
-};
+    e.preventDefault();
+    console.log("ユーザーの回答:", userInput);
+    setLoading(true);
+    const res = await fetch("/api/grade", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ challengeId: situationId, answer: userInput }), // ← answerをuserInputに
+    });
+    const json = await res.json();
+    setGradingResult(json.parsed ?? json);
+    setLoading(false);
+    setMode("result");
+  };
 
 
   const onBack = () => {
@@ -94,16 +94,14 @@ export default function Page() {
         <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
           {/* 黒背景 */}
           <div
-            className={`absolute inset-0 bg-black transition-opacity duration-1000 ${
-              showImage ? "opacity-0" : "opacity-100"
-            }`}
+            className={`absolute inset-0 bg-black transition-opacity duration-1000 ${showImage ? "opacity-0" : "opacity-100"
+              }`}
           />
 
           {/* 背景画像＋オーバーレイ */}
           <div
-            className={`absolute inset-0 bg-[url('/takoyaki.jpg')] bg-cover bg-center transition-opacity duration-1000 ${
-              showImage ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 bg-[url('/takoyaki.jpg')] bg-cover bg-center transition-opacity duration-1000 ${showImage ? "opacity-100" : "opacity-0"
+              }`}
           >
             <div className="absolute inset-0 bg-black/40" />
           </div>
@@ -116,33 +114,30 @@ export default function Page() {
           </div>
 
           {storyIndex === 3 && !submitted && (
-  <form
-    onSubmit={onGrade}
-    className="relative z-10 mt-6 text-center"
-  >
-    <input
-      type="text"
-      value={userInput}
-      onChange={(e) => setUserInput(e.target.value)}
-      placeholder="例：チーズ、明太子、こんにゃく…"
-      className="px-4 py-2 rounded border border-white text-white bg-black/50 placeholder-white"
-      disabled={loading} // 入力中もロックしたいならここも
-    />
-    <button
-      type="submit"
-      disabled={loading} // ← 無効化
-      className={`ml-2 px-4 py-2 text-white rounded 
+            <form
+              onSubmit={onGrade}
+              className="relative z-10 mt-6 text-center"
+            >
+              <input
+                type="text"
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                placeholder="例：チーズ、明太子、こんにゃく…"
+                className="px-4 py-2 rounded border border-white text-white bg-black/50 placeholder-white"
+                disabled={loading} // 入力中もロックしたいならここも
+              />
+              <button
+                type="submit"
+                disabled={loading} // ← 無効化
+                className={`ml-2 px-4 py-2 text-white rounded 
         ${loading ? "bg-gray-500 cursor-not-allowed" : "bg-red-500 hover:bg-red-600"}`}
-    >
-      {loading ? "送信中…" : "送信する"}
-    </button>
-  </form>
-)}
-
-
+              >
+                {loading ? "送信中…" : "送信する"}
+              </button>
+            </form>
+          )}
         </div>
       )}
-
       {/* 結果画面 */}
       {mode === "result" && gradingResult && (
         <ResultView score={gradingResult.score} onBack={onBack} />
