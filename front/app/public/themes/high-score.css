@@ -9,7 +9,7 @@ body {
 
     /* 背景画像の設定 */
     /* プロジェクト内に画像を置いて相対パスで指定する（例: front/high score page.jpg） */
-    background-image: url('high score page.jpg');
+    background-image: url('./high-score-page.jpg');
     background-size: cover; /* 画像を画面全体に広げる */
     background-position: center; /* 画像を中央に配置する */
     background-repeat: no-repeat; /* 画像の繰り返しを防ぐ */
@@ -48,8 +48,10 @@ body::before {
 #quiz-area {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto; /* 残り高さを占める */
+    align-items: center;
+    gap: 20px;  /* 要素間のすき間を統一管理 */
 }
+
 
 /* ボタンを下部に固定（既に定義がある場合は上書きされる） */
 .button-container {
@@ -79,11 +81,10 @@ h1 {
     display: inline-block; /* スタートとランキングだけ表示 */
 }
 
-/* オプションや再スタート用のボタンを確実に隠す */
 .options-container,
 .option-btn,
 .restart-btn {
-    display: none !important;
+    display: flex;
 }
 
 .options-container {
@@ -124,6 +125,15 @@ h1 {
 .option-btn:hover, .restart-btn:hover {
     background-color: #333; /* hoverで少し明るく */
 }
+
+#score-text {
+    font-size: 150px;
+    font-weight: bold;
+    margin-top: 0px;    /*余白をなくす*/
+    margin-bottom: 10px; /* ボタンとの間 */
+    color: "orange";
+}
+
 
 /* 小さい画面では余白を少し小さくする */
 @media (max-height: 600px) {

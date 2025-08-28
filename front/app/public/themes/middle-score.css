@@ -9,7 +9,7 @@ body {
 
     /* 背景画像の設定 */
     /* プロジェクト内に画像を置いて相対パスで指定する（例: front/high score page.jpg） */
-    background-image: url('bad score page.jpg');
+    background-image: url('./good-score-page.jpg');
     background-size: cover; /* 画像を画面全体に広げる */
     background-position: center; /* 画像を中央に配置する */
     background-repeat: no-repeat; /* 画像の繰り返しを防ぐ */
@@ -123,6 +123,14 @@ h1 {
 
 .option-btn:hover, .restart-btn:hover {
     background-color: #333; /* hoverで少し明るく */
+}
+
+#score-text {
+    font-size: 150px;
+    font-weight: bold;
+    margin-top: 0px;    /*余白をなくす*/
+    margin-bottom: 110px; /* ボタンとの間 */
+    color: "orange"; /* 文字色をオレンジに変更 */
 }
 
 /* 小さい画面では余白を少し小さくする */

@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import ChallengeView from "@/app/components/ChallengeView";
 import ResultView from "@/app/components/ResultView";
 import { PublicChallenge, GradingResult } from "@/app/situation1/types";
+import { on } from "events";
 
 export default function Page() {
   const [challenges, setChallenges] = useState<PublicChallenge[]>([]);
-  const [selected, setSelected] = useState("");
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState<GradingResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<"challenge" | "result">("challenge");
+
+  // このページのお題ID
+  const situationId = "situation-001";
 
   useEffect(() => {
     fetch("/api/challenges")
@@ -24,7 +27,7 @@ export default function Page() {
     const res = await fetch("/api/grade", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ challengeId: selected, answer }),
+      body: JSON.stringify({ challengeId: situationId, answer }),
     });
     const json = await res.json();
     setResult(json.parsed ?? json);
@@ -32,9 +35,11 @@ export default function Page() {
     setMode("result");
   };
 
+  // 結果画面の「選択画面に戻る」ボタン
   const onBack = () => {
     setResult(null);
     setAnswer("");
+    // ここではお題一覧画面に戻る想定なので、実際には別の画面に遷移する
     setMode("challenge");
   };
 
@@ -43,16 +48,16 @@ export default function Page() {
         {mode === "challenge" && (
         <ChallengeView
           challenges={challenges}
-          selected={selected}
+          situationId={situationId}
           answer={answer}
           loading={loading}
-          onSelect={setSelected}
           onChangeAnswer={setAnswer}
-          onSubmit={onGrade}
+          onSubmit={onGrade}  
         />
       )}
       {mode === "result" && result && (
-        <ResultView result={result} challengeId={selected} onBack={onBack} />
+        <ResultView score={result.score} onBack={onBack}
+        />
       )}
     </div>
   );
