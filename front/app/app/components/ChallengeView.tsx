@@ -2,43 +2,25 @@ import { PublicChallenge } from "@/app/situation1/types";
 
 type Props = {
   challenges: PublicChallenge[];
-  selected: string;
+  situationId: string;
   answer: string;
   loading: boolean;
-  onSelect: (id: string) => void;
   onChangeAnswer: (text: string) => void;
   onSubmit: (e: React.FormEvent) => void;
 };
 
 export default function ChallengeView({
   challenges,
-  selected,
+  situationId,
   answer,
   loading,
-  onSelect,
   onChangeAnswer,
   onSubmit,
 }: Props) {
-  const current = challenges.find((c) => c.id === selected);
-
+  const current = challenges.find((c) => c.id === situationId);
   return (
     <div>
       <h1 className="text-2xl font-bold">お題で採点</h1>
-
-      <div className="space-y-2">
-        <label className="block font-medium">お題を選択</label>
-        <select
-         className="border rounded px-3 py-2" 
-         value={selected} 
-         onChange={(e) => onSelect(e.target.value)}>
-          <option value="">-- 選択してください --</option>
-          {challenges.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.title}（v{c.version}）
-            </option>
-          ))}
-        </select>
-      </div>
 
       {current && (
         <div className="p-4 rounded border">
@@ -56,7 +38,7 @@ export default function ChallengeView({
         />
         <button 
           type="submit" 
-          disabled={!selected || !answer || loading} 
+          disabled={!answer || loading} 
           className="border rounded px-4 py-2"
           >
             {loading ? "お待ちください…" : "採点する"}
