@@ -5,10 +5,10 @@ import { useEffect, useState, useRef, useMemo } from "react";
 
 export default function Page() {
   const kansaiStory = [
-    "みんなでたこ焼きパーティーを始めた！",
+    "みんなでたこ焼きパーティーを始めた！（エンターキーで次に進むよ）",
     "　　「ソースは甘口派？辛口派？」「うちは絶対マヨ多めやで！」",
     "具材を用意し、まさにこれから作ろうとしているところだ。",
-    "さて、あなたが入れたい具材は？（自由に入力してみて！）", // 4つ目のセリフ
+    "さて、あなたはまずなにをしますか？（自由に入力してみて！）", // 4つ目のセリフ
   ];
 
   const [storyIndex, setStoryIndex] = useState(0);

@@ -114,8 +114,10 @@ export default function Home() {
         </header>
 
         <div className="bg-black/70 border-4 border-dashed border-yellow-300 rounded-2xl mx-auto mt-8 p-6 w-11/12 md:w-3/4 text-lg leading-relaxed">
-          🗣️ ほな、これからアンタがほんまに関西人かどうか、<br />
-          わてがガッツリ診断したるわ！<br />
+          🗣️ ほな、これからアンタがほんまに関西人かどうか、
+          <br />
+          わてがガッツリ診断したるわ！
+          <br />
           好きなシチュエーションを選んでや！
         </div>
 
