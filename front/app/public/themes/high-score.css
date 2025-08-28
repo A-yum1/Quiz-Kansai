@@ -9,7 +9,7 @@ body {
 
     /* 背景画像の設定 */
     /* プロジェクト内に画像を置いて相対パスで指定する（例: front/high score page.jpg） */
-    background-image: url('high score page.jpg');
+    background-image: url('./high-score-page.jpg');
     background-size: cover; /* 画像を画面全体に広げる */
     background-position: center; /* 画像を中央に配置する */
     background-repeat: no-repeat; /* 画像の繰り返しを防ぐ */
