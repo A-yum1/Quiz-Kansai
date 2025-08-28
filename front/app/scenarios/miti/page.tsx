@@ -1,7 +1,8 @@
-
 "use client";
+
 import DialogueBox from "@/app/components/dialoguebox";
 import TextTyper from "@/app/components/TextTyper";
+import Image from "next/image";
 import { useEffect, useState, useRef, useMemo } from "react";
 
 export default function Page() {
@@ -67,9 +68,11 @@ export default function Page() {
       {/* 地図表示（右上） */}
       {showMap && (
         <div className="absolute top-4 right-4 z-20 w-40 h-40 md:w-60 md:h-60 rounded-lg overflow-hidden shadow-lg border-2 border-white">
-          <img
+          <Image
             src="/map.png"
             alt="地図"
+            width={100}
+            height={100}
             className="w-full h-full object-cover"
           />
         </div>
