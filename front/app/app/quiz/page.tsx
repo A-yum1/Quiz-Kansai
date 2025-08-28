@@ -28,6 +28,7 @@ export default function Page() {
   const [selected, setSelected] = useState<string>("");
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState<GradingResult | null>(null);
+  const [loading, setLoading] = useState(false);  //ロード中かどうか管理するstate
 
   useEffect(() => {
     fetch("/api/challenges")
@@ -37,6 +38,8 @@ export default function Page() {
 
   const onGrade = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);  //ボタンが押されたらロード中にする
+
     const res = await fetch("/api/grade", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -46,6 +49,8 @@ export default function Page() {
 
     // API 側で "parsed" に入って返ってくる場合があるのでハンドリング
     setResult(json.parsed ?? json);
+
+    setLoading(false); //処理が終わったらローディング終了
   };
 
   const current = challenges.find((c) => c.id === selected);
@@ -88,15 +93,14 @@ export default function Page() {
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
         />
-        <button
+        <button //提出ボタン
           type="submit"
-          disabled={!selected || !answer}
+          disabled={!selected || !answer || loading}  //選択されていない、回答が空、ロード中は無効化
           className="border rounded px-4 py-2"
         >
-          採点する
-        </button>
+          {loading ? "採点中..." : "採点する"}
+        </button> 
       </form>
-
       {result && (
         <div className="p-4 rounded border space-y-3">
           <div className="font-semibold">
