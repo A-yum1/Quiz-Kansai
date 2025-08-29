@@ -60,7 +60,7 @@ body::before {
     align-items: center;
     gap: 20px;
     margin-top: auto; /* 自動マージンで下に押し出す */
-    margin-bottom: 100px;
+    margin-bottom: 70px;
 }
 
 h1 {
