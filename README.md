@@ -1,14 +1,14 @@
 # Name（リポジトリ/プロジェクト/OSS などの名前）
 
-関西度測定
+#関西度測定
 
-Quiz-Kansai
+#Quiz-Kansai
 
-"Quiz-Kansai"は関西人度合を測定するアプリです。
+##"Quiz-Kansai"は関西人度合を測定するアプリです。
 
 # DEMO
 
-"Quiz-Kansai"の魅力が直感的に伝えわるデモ動画や図解を載せる
+###"Quiz-Kansai"の魅力
 
 # Features
 
@@ -48,11 +48,3 @@ python demo.py
 作成情報を列挙する
 
 - 作成者　みーちゃん/indo/しずと
-
-# License
-
-ライセンスを明示する
-
-"hoge" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
-
-社内向けなら社外秘であることを明示してる
