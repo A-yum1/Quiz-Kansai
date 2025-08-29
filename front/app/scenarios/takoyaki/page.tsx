@@ -122,7 +122,7 @@ export default function Page() {
                 type="text"
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
-                placeholder="例：チーズ、明太子、こんにゃく…"
+                placeholder="たこ焼きを焼く？どんな風に？"
                 className="px-4 py-2 rounded border border-white text-white bg-black/50 placeholder-white"
                 disabled={loading} // 入力中もロックしたいならここも
               />

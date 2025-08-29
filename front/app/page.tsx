@@ -30,7 +30,6 @@ export default function Page() {
             <button className="menu-button" onClick={handleStart}>
               スタート
             </button>
-            <button className="menu-button">ランキング</button>
           </div>
         </div>
 
