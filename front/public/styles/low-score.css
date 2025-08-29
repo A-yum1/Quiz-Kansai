@@ -130,7 +130,7 @@ h1 {
     font-size: 160px;
     font-weight: bold;
     margin-bottom: 60px; /* ボタンとの間 */
-    color: "orange"; /* 文字色をオレンジに変更 */
+    color: orange; /* 文字色をオレンジに変更 */
 }
 
 /* 小さい画面では余白を少し小さくする */
