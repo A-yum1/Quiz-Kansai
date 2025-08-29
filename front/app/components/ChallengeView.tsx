@@ -1,4 +1,4 @@
-import { PublicChallenge } from "@/app/situation1/types";
+import { PublicChallenge } from "@/app/scenarios/types";
 
 type Props = {
   challenges: PublicChallenge[];
