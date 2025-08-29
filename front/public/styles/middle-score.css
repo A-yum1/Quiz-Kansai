@@ -131,7 +131,7 @@ h1 {
     font-weight: bold;
     margin-top: 0px;    /*余白をなくす*/
     margin-bottom: 110px; /* ボタンとの間 */
-    color: "orange"; /* 文字色をオレンジに変更 */
+    color: orange; /* 文字色をオレンジに変更 */
 }
 
 /* 小さい画面では余白を少し小さくする */
