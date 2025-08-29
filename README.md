@@ -2,11 +2,9 @@
 
 ##"Quiz-Kansai"は関西人度合を測定するアプリです。
 
-# DEMO
+# Features
 
 ##"Quiz-Kansai"の魅力　 ・こてこての関西感を出したデザイン　・テキストや音声の表現
-
-# Features
 
 ##"Quiz-Kansai"のセールスポイント
 　　自分がどのくらい関西人になれているかがわかる！
