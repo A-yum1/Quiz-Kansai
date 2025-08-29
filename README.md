@@ -1,50 +1,27 @@
-# Name（リポジトリ/プロジェクト/OSS などの名前）
-
-#関西度測定
-
-#Quiz-Kansai
+# Name:Quiz-Kansai
 
 ##"Quiz-Kansai"は関西人度合を測定するアプリです。
 
 # DEMO
 
-###"Quiz-Kansai"の魅力
+##"Quiz-Kansai"の魅力　こてこての関西感を出したデザイン
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/presentation.jpg?raw=true)
 
 # Features
 
-"Quiz-Kansai"のセールスポイントや差別化などを説明する
-
-# Requirement
-
-"Quiz-Kansai"を動かすのに必要なライブラリなどを列挙する
-
-- huga 3.5.2
-- hogehuga 1.0.2
-
-# Installation
-
-Requirement で列挙したライブラリなどのインストール方法を説明する
-
-```bash
-pip install huga_package
-```
+##"Quiz-Kansai"のセールスポイント
+自分がどのくらい関西人になれているかがわかる！
 
 # Usage
 
-DEMO の実行方法など、"hoge"の基本的な使い方を説明する
+##DEMO の実行方法
 
 ```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
-
-# Note
-
-注意点などがあれば書く
+git clone https://github.com/A-yum1/Quiz-Kansai.git
+cd front
+npm run dev
 
 # Author
 
-作成情報を列挙する
-
 - 作成者　みーちゃん/indo/しずと
+```
