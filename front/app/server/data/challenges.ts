@@ -141,9 +141,9 @@ export const CHALLENGES: Challenge[] = [
           id: "enthusiasm",
           name: "熱意",
           weight: 0.4,
-          description: "阪神タイガースへの熱い応援ができているか",
+          description: "阪神タイガースへの熱い思いが表れているか",
           deductions: ["応援していない", "無関心", "冷たい態度"],
-          examples: { good: "大声で応援する,ヤジを飛ばす", bad: "黙っている" }
+          examples: { good: "大声で応援する,ヤジを飛ばす,審判に怒る", bad: "黙っている,仕方がないと考える" }
         },
         {
           id: "expression",
@@ -151,7 +151,7 @@ export const CHALLENGES: Challenge[] = [
           weight: 0.4,
           description: "汚い言葉がつかえているか",
           deductions: ["汚い言葉を使わない", "品のない言葉を使わない"],
-          examples: {good: "打てやボケ,目ついてんのか,よくやった,よっしゃボケ", bad: "惜しい,すごい,やったー" }
+          examples: {good: "打てやボケ,目ついてんのか,どう考えてもストライクやろ", bad: "惜しい,すごい,やったー" }
         },
         {
           id: "appropriateness",
@@ -159,7 +159,7 @@ export const CHALLENGES: Challenge[] = [
           weight: 0.2,
           description: "下ネタを使わず、暴力的な表現ができているか",
           deductions: ["下ネタ"],
-          examples: {good: "打てやボケ,目ついてんのか,よっしゃボケ", bad: "下ネタ" }
+          examples: {good: "打てやボケ,目ついてんのか,どう考えてもストライクやろ", bad: "下ネタ" }
         },
       ]
     },
